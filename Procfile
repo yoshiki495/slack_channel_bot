@@ -1,1 +1,2 @@
-web: gunicorn slackbot-byflask:app --log-file=-
+web gunicorn gettingstarted.wsgi --log-file -
+worker: python run.py
