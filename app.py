@@ -7,7 +7,6 @@ from onboarding_tutorial import OnboardingTutorial
 import json
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
-from bottle import route, run
 
 app = Flask(__name__)
 
@@ -74,12 +73,8 @@ def new_channel(payload):
 
     return start_onboardings("C018F2W9JBU", "C018BA3SERK")
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
 if __name__ == "__main__":
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(port=5000)
