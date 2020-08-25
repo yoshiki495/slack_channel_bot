@@ -7,6 +7,7 @@ from onboarding_tutorial import OnboardingTutorial
 import json
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
+from bottle import routes, run
 
 app = Flask(__name__)
 
