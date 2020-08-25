@@ -20,7 +20,6 @@ Jinja2==2.11.2
 MarkupSafe==1.1.1
 multidict==4.7.6
 pyee==7.0.2
-pyjs==0.8.2
 pytz==2020.1
 requests==2.24.0
 six==1.15.0
