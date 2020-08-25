@@ -74,6 +74,10 @@ def new_channel(payload):
 
     return start_onboardings("C018F2W9JBU", "C018BA3SERK")
 
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
 if __name__ == "__main__":
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
