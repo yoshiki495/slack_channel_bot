@@ -18,44 +18,11 @@ slack_web_client = WebClient(token=os.environ['SLACK_BOT_TOKEN'])
 
 onboarding_tutorials_sent = {}
 
-def start_onboarding(user_id: str, channel: str):
-
-    onboarding_tutorial = OnboardingTutorial(channel)
-
-    message = onboarding_tutorial.get_message_payload()
-
-    response = slack_web_client.chat_postMessage(**message)
-
-    onboarding_tutorial.timestamp = response["ts"]
-
-    if channel not in onboarding_tutorials_sent:
-        onboarding_tutorials_sent[channel] = {}
-    onboarding_tutorials_sent[channel][user_id] = onboarding_tutorial
-
-# ============== Message Events ============= #
-# When a user sends a DM, the event type will be 'message'.
-# Here we'll link the message callback to the 'message' event.
-@slack_events_adapter.on("message")
-def message(payload):
-    """Display the onboarding welcome message after receiving a message
-    that contains "start".
-    """
-    event = payload.get("event", {})
-
-    channel_id = event.get("channel")
-    user_id = event.get("user")
-    text = event.get("text")
-
-    if text and text.lower() == "start":
-        return start_onboarding(user_id, channel_id)
-
 @slack_events_adapter.on("channel_created")
 def new_channel(payload):
 
     event = payload.get("event", {})
-
     channel = event.get("channel")
-    channel_id = channel.get("id")
     channel_name = channel.get("name")
 
     def start_onboardings(user_id: str, channel: str):
