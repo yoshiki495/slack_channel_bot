@@ -38,7 +38,9 @@ def new_channel(payload):
             onboarding_tutorials_sent[channel] = {}
         onboarding_tutorials_sent[channel][user_id] = onboarding_tutorial
 
-    return start_onboardings("C018F2W9JBU", "C018BA3SERK")
+
+#Please put user_id & channel_id into below.
+    return start_onboardings("", "")
 
 if __name__ == "__main__":
     logger = logging.getLogger()
